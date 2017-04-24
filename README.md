@@ -4,9 +4,6 @@
 # Используемые технологии
 _Для работы требуется установка [Node.js](https://nodejs.org/en/), [Git](https://git-scm.com/)_
 
-## Сборка HTML
-**gulp-pug** (gulp-jade) - HTML препроцессор/шаблонизатор. Имеет возможность дробить код на мелкие независимые части с возможностью последующего подключения. [Официальный сайт](https://pugjs.org/api/getting-started.html). Русская документация по [pug](https://habrahabr.ru/post/278109/).
-
 ## Сборка CSS
 **gulp-sass** - CSS препроцессор/шаблонизатор. Возможная альтернатива [gulp-stylus](http://stylus-lang.com/). 
 **gulp-cssnano** - CSS компрессор. [Официальный сайт](http://cssnano.co/).
