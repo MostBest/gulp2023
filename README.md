@@ -18,10 +18,10 @@ _Для работы требуется установка [Node.js](https://nod
 5.1.4 **src -> sass -> includes** - общая директория scss файлов.  
 5.1.5 **src -> sass -> includes -> system** - директория системных scss файлов.  
 5.1.6 **src -> sass -> includes -> system -> variables.sass** - файл системных переменых.  
-5.1.7 **src -> sass -> includes -> system -> fonts.sass** - файл подключения шрифтов.
+5.1.7 **src -> sass -> includes -> system -> fonts.sass** - файл подключения шрифтов.   
 5.1.8 **src -> js** - javascript директория. Использовать ECMAScript 6.  
 5.1.9 **src -> img** - директория визуального оформления.  
-5.1.10 **src -> pug** - директория html разметки. Использовать html предпроцессор pug.  
+5.1.10 **src -> template** - директория html разметки. Использовать html предпроцессор pug. Документация по установки [pug](https://github.com/MostBest/gulp_pug).  
 5.2 **build** - дериктива скомпелированных файлов. 
 1. **Создаем файл gulpfile.js** - файл с инструкциями для gulp.
 
