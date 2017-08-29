@@ -26,6 +26,36 @@ _Для работы требуется установка [Node.js](https://nod
 1. **Создаем файл gulpfile.js** - файл с инструкциями для gulp.
 
 
+## Сборка HTML
+**gulp-pug** (gulp-jade) - HTML препроцессор/шаблонизатор. Имеет возможность дробить код на мелкие независимые части с возможностью последующего подключения. [Официальный сайт](https://pugjs.org/api/getting-started.html). Русская документация по [pug](https://habrahabr.ru/post/278109/).
+
+## Структура проекта
+```
+src - директория для оригинальных/исходных файлов проекта; 
+--template - директория pug шаблонов;
+----includes - директория подключаемых pug файлов;
+----index.pug - исходный pug файл.  
+```
+
+## Установка
+```
+$ npm i gulp-pug -D
+```
+
+## Подключение в gulpfile.js
+```
+const gulp = require('gulp');
+const pug = require('gulp-pug');
+
+gulp.task('views', function() {
+  return gulp.src(path.src.html)
+  .pipe(pug({
+    pretty: true
+  }))
+  .pipe(gulp.dest(path.build.html));
+});
+```
+
 ## Сборка CSS
 **gulp-sass** - CSS препроцессор/шаблонизатор. Возможная альтернатива [gulp-stylus](http://stylus-lang.com/). 
 **gulp-cssnano** - CSS компрессор. [Официальный сайт](http://cssnano.co/).
