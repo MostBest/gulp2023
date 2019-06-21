@@ -24,8 +24,8 @@ _Для работы требуется установка [Node.js](https://nod
 
 ## Удаляем локальную версию gulp
 1. **cd [your-project-dir/]** - переходим в директорию проекта.
-1. **npm rm gulp --save-dev** - удаляем старую версию **gulp**.
-1. **npm rm gulp --save** - удаляем старую версию **gulp**.
+1. **npm rm gulp --save-dev** - удаляем зависимости **devDependencies** из **package.json**.
+1. **npm rm gulp --save** - удаляем зависимости **dependencies** из **package.json**.
 1. **npm rm gulp --save-optional** - удаляем старую версию **gulp**.
 1. **npm cache clean** - чистим кэш.
 
