@@ -1,5 +1,5 @@
 # Gulp - быстрый старт
-Сборка gulp от компании mostbest.ru. Автор: Чернов Алексей
+Сборка gulp от компании mostbest.ru. Автор: Чернов Алексей  
 _Для работы требуется установка [Node.js](https://nodejs.org/en/), [Git](https://git-scm.com/)_
 
 # Команды npm
