@@ -22,7 +22,7 @@ _Для работы потребуется установка [Node.js](https:/
 1. Далее необходимо ввести имя файла, в который будет сохранен ключ **Enter file in which to save the key (C:\Users\username/.ssh/id_ed25519): id_ed25519.pub**
 1. После чего будет предложено указать ключевое слово (можно оставить пустым) **Enter passphrase (empty for no passphrase):** и подтвердить его **Enter same passphrase again:**. В итоге будет сгенерирован и выведен в консоль SSH ключ.
 1. Если возникла ошибка **unable to start ssh-agent service, error :1058** (Windows 10), вероятно не установлен компонент **Клиент OpenSSH**. Откройте **Параметры -> Приложения -> Приложения и возможности -> Дополнительные компоненты -> Клиент OpenSSH**. Далее **Службы -> OpenSHH Authentication Agent** в контекстном меню выбираем пункт **Автоматически**.
-1. Start-Process ssh-agent -Verb RunAs Start-Service ssh-agent ssh-add c:/Users/username/.ssh/id_ed25519
+1. Start-Process ssh-agent -Verb RunAs Start-Service ssh-agent ssh-add c:/Users/username/.ssh/id_ed25519 Get-Content c:/Users/User4/.ssh/id_ed25519.pub | clip
 
 ## Удаляем глобальную версию gulp
 1. **npm rm gulp -g** - удаляем предидущую глабально установленную версию **gulp**. В разных проектах могут использоваться разные версии **gulp**. Чтобы проект не зависил от глабально установленного **gulp** в каждый проет ставим **gulp** лакально.
