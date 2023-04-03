@@ -21,14 +21,17 @@ _Для работы потребуется установка [Node.js](https:/
 1. Вводим команду **ssh-keygen -t ed25519 -C "your_email@example.com"**
 1. Далее необходимо ввести имя файла, в который будет сохранен ключ **Enter file in which to save the key (C:\Users\username/.ssh/id_ed25519): id_ed25519.pub**
 1. После чего будет предложено указать ключевое слово (можно оставить пустым) **Enter passphrase (empty for no passphrase):** и подтвердить его **Enter same passphrase again:**. В итоге будет сгенерирован и выведен в консоль SSH ключ.
-1. Если возникла ошибка **unable to start ssh-agent service, error :1058** (Windows 10), вероятно не установлен компонент **Клиент OpenSSH**. Откройте **Параметры -> Приложения -> Приложения и возможности -> Дополнительные компоненты -> Клиент OpenSSH**. Далее **Службы -> OpenSHH Authentication Agent** в контекстном меню выбираем пункт **Автоматически**.
-1. Start-Process ssh-agent -Verb RunAs Start-Service ssh-agent ssh-add c:/Users/username/.ssh/id_ed25519 Get-Content c:/Users/User4/.ssh/id_ed25519.pub | clip
+1. Запускаем **ssh-agent** командой **Start-Service ssh-agent**. Возможно понадобобится запуск **Start-Process ssh-agent -Verb RunAs**
+1. После добавляем ключ **ssh-add c:/Users/username/.ssh/id_ed25519**
+1. **Get-Content c:/Users/User4/.ssh/id_ed25519.pub | clip** копируем публичный ключ и добавляем его 
+
+### Ошибка **unable to start ssh-agent service, error :1058** (Windows 10)
+1. Вероятно не установлен компонент **Клиент OpenSSH**. Откройте **Параметры -> Приложения -> Приложения и возможности -> Дополнительные компоненты -> Клиент OpenSSH**. 
+1. Далее **Службы -> OpenSHH Authentication Agent** в контекстном меню выбираем пункт **Автоматически**.
 
 ## Удаляем глобальную версию gulp
 1. **npm rm gulp -g** - удаляем предидущую глабально установленную версию **gulp**. В разных проектах могут использоваться разные версии **gulp**. Чтобы проект не зависил от глабально установленного **gulp** в каждый проет ставим **gulp** лакально.
 1. **npm rm gulp-cli -g** - деинсталлируем утилиту **gulp-cli**. Утилита **gulp-cli** позваляет без глобальной установки вводить в консоль команды необходимые для управления **gulp**.
-1. Запускаем **ssh-agent** командой **Start-Service ssh-agent**. Возможно понадобобится запуск **Start-Process ssh-agent -Verb RunAs**
-1. После добавляем ключ **ssh-add c:/Users/username/.ssh/id_ed25519**
 
 ## Удаляем локальную версию gulp
 1. **cd [your-project-dir/]** - переходим в директорию проекта.
