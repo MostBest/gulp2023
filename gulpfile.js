@@ -1,103 +1,96 @@
 'use strict';
 
-const log = param => console.log(param);
+import pkg from 'gulp';
+const { gulp, src, dest, parallel, series, watch } = pkg;
 
-const { src, dest, series, parallel, watch }     = require('gulp');
-const pug                                        = require('gulp-pug');
-const sass                                       = require('gulp-sass')(require('sass'));
-const del                                        = require('del');
+import pug from 'gulp-pug';
+import { deleteAsync } from 'del';
+import dartSass from 'sass';
+import gulpSass from 'gulp-sass';
+const sass = gulpSass(dartSass);
+import svgmin from 'gulp-svgmin';
+import imagemin from 'gulp-imagemin';
+import imageminJpegRecompress from 'imagemin-jpeg-recompress';
+import browserSync from 'browser-sync';
 
-const imagemin											             = require('gulp-imagemin');
-const svgmin											               = require('gulp-svgmin');
+const paths = {
+	dev: {
+		img: 'dev/img/**/*.{*, !svg}',
+		svg: 'dev/img/svg/**/*',
+		html: 'dev/pug/**/*',
+		css: 'dev/sass/**/*',
+		js: 'dev/js/**/*',
+	  },
+	  build: {
+		html: 'assets/html',
+		svg: 'dev/img/svg',
+		css: 'assets/css',
+		img: 'assets/img',
+		js: 'assets/js',
+	  },
+	  serv: {
+		html: 'assets/html/',
+	  },
+};
 
-const browserSync											           = require('browser-sync').create();
-const reload                                     = browserSync.reload;
-const stream                                     = browserSync.stream();
-
-const version                                    = '2.0.0';
-const lastModified                               = '7/13/2021';
-
-const path = {
-  dev: {
-    html: 'dev/pug/*.pug',
-    css: 'dev/sass/**/*.sass',
-    img: 'dev/img/**/*.{*,!svg}',
-    svg: 'dev/img/**/*.svg',
-    js: 'dev/js/**/*.js',
-  },
-  build: {
-    html: 'build',
-    css: 'build/css',
-    img: 'build/img',
-    js: 'build/js',
-  },
-  serv: {
-    html: 'dev/pug/**/*.pug',
-  },
+function browsersync() {
+	browserSync.init({
+		server: {
+			baseDir: paths.serv.html
+		},
+		browser: 'firefox'
+	})
 }
-
-function mkdir() {
-  return src('*.*', {read: false})
-    .pipe(dest('./dev/pug'))
-    .pipe(dest('./dev/sass'))
-    .pipe(dest('./dev/img'))
-    .pipe(dest('./dev/js'));
-}
-
-function clean() {
-  return del(['build/**', '!build', '!build/img']);
-}
-
-function server() {
-
-  browserSync.init({
-      server: "./build"
-  });
-
-  watch(path.serv.html, html);
-  watch(path.dev.css, css);
-  watch(path.dev.img, img, svg).on('change', reload);
-  watch(path.dev.js, js).on('change', reload);
-  watch(path.build.html).on('change', reload);
-}
+/*
+	Нет работы с JS, возможно стоит подключить TypeScript
+*/
 
 function html() {
-  return src(path.dev.html)
-    .pipe(pug({
-      pretty: true,
-    }))
-    .pipe(dest(path.build.html));
-}
-
-function img() {
-  return src(path.dev.img)
-    .pipe(imagemin({
-      progressive: true
-    }))
-    .pipe(dest(path.build.img));
-}
-
-function svg() {
-  return src(path.dev.svg)
-    .pipe(svgmin())
-    .pipe(dest(path.build.img));
+  return src(paths.dev.html)
+    .pipe(pug({ pretty: true }))
+    .pipe(dest(paths.build.html))
 }
 
 function css() {
-  return src(path.dev.css)
-    .pipe(sass())
-    .pipe(dest(path.build.css))
+	return src(paths.dev.css)
+		.pipe(sass())
+		.pipe(dest(paths.build.css))
+		.pipe(browserSync.stream())
 }
 
 function js() {
-  return src(path.dev.js)
-    .pipe(dest(path.build.js));
+	return src(paths.dev.js)
+	  .pipe(dest(paths.build.js))
+  }
+
+function svg() {
+	return src(paths.dev.svg)
+		.pipe(svgmin())
+		.pipe(dest(paths.build.svg))
+		.pipe(browserSync.stream())
 }
 
-exports.clean = clean;
-exports.mkdir = mkdir;
-exports.default = series(
-  clean,
-  parallel(html, img, svg, css, js),
-  server
-);
+function img() {
+	return src(paths.dev.img)
+		.pipe(imagemin([
+			imageminJpegRecompress({
+				loops: 6,
+				min: 70,
+				max: 85,
+				quality: 'high'
+			})
+		]))
+		.pipe(dest(paths.build.img))
+		.pipe(browserSync.stream());
+}
+
+function startwatch() {
+	watch(paths.dev.html, html);
+	watch(paths.dev.css, css);
+	watch(paths.dev.img, img);
+	watch(paths.dev.svg, svg);
+	watch(paths.dev.js, js);
+	watch([paths.dev.html, paths.dev.js]).on('change', browserSync.reload);
+}
+
+export default series(html, css, svg, img, parallel(browsersync, startwatch));
