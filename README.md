@@ -22,8 +22,8 @@ _Для работы потребуется установка [Node.js](https:/
 1. Далее необходимо ввести имя файла, в который будет сохранен ключ **Enter file in which to save the key (C:\Users\username/.ssh/id_ed25519): id_ed25519.pub**
 1. После чего будет предложено указать ключевое слово (можно оставить пустым) **Enter passphrase (empty for no passphrase):** и подтвердить его **Enter same passphrase again:**. В итоге будет сгенерирован и выведен в консоль SSH ключ.
 1. Запускаем **ssh-agent** командой **Start-Service ssh-agent**. Возможно понадобобится запуск **Start-Process ssh-agent -Verb RunAs**
-1. После добавляем ключ **ssh-add c:/Users/username/.ssh/id_ed25519**
-1. **Get-Content c:/Users/User4/.ssh/id_ed25519.pub | clip** копируем публичный ключ на сайт GitHub **Profile -> Settings -> SSH and GPG keys -> SSH keys**.
+1. После добавляем ключ **ssh-add c:/Users/Username/.ssh/id_ed25519**
+1. **Get-Content c:/Users/Username/.ssh/id_ed25519.pub | clip** копируем публичный ключ на сайт GitHub **Profile -> Settings -> SSH and GPG keys -> SSH keys**.
 
 ### Ошибка **unable to start ssh-agent service, error :1058** (Windows 10)
 1. Вероятно не установлен компонент **Клиент OpenSSH**. Откройте **Параметры -> Приложения -> Приложения и возможности -> Дополнительные компоненты -> Клиент OpenSSH**. 
