@@ -13,7 +13,8 @@
     "imagemin-jpeg-recompress": "^7.1.0",
     "npm-check-updates": "^16.10.2",
     "pug": "^3.0.2",
-    "sass": "^1.60.0"
+    "sass": "^1.60.0",
+    "typescript": "^5.0.4"
   },
   "devDependencies": {
     "browser-sync": "^2.29.1",

@@ -15,15 +15,15 @@ import browserSync from 'browser-sync';
 
 const paths = {
 	dev: {
+		html: 'dev/pug/**/*',
 		img: 'dev/img/**/*.{*, !svg}',
 		svg: 'dev/img/svg/**/*',
-		html: 'dev/pug/**/*',
 		css: 'dev/sass/**/*',
 		js: 'dev/js/**/*',
 	  },
 	  build: {
 		html: 'assets/html',
-		svg: 'dev/img/svg',
+		svg: 'assets/img/svg',
 		css: 'assets/css',
 		img: 'assets/img',
 		js: 'assets/js',
