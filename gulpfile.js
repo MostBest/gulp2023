@@ -15,21 +15,24 @@ import browserSync from 'browser-sync';
 
 const paths = {
 	dev: {
-		html: 'dev/pug/**/*',
+		html: 'dev/pug/index.pug',
 		img: 'dev/img/**/*.{*, !svg}',
 		svg: 'dev/img/svg/**/*',
 		css: 'dev/sass/**/*',
 		js: 'dev/js/**/*',
 	  },
 	  build: {
-		html: 'assets/html',
+		html: 'assets/',
 		svg: 'assets/img/svg',
 		css: 'assets/css',
 		img: 'assets/img',
 		js: 'assets/js',
 	  },
+	  watch: {
+		html: 'dev/pug/**/*'
+	  },
 	  serv: {
-		html: 'assets/html/',
+		html: 'assets',
 	  },
 };
 
@@ -85,12 +88,12 @@ function img() {
 }
 
 function startwatch() {
-	watch(paths.dev.html, html);
+	watch(paths.watch.html, html);
 	watch(paths.dev.css, css);
 	watch(paths.dev.img, img);
 	watch(paths.dev.svg, svg);
 	watch(paths.dev.js, js);
-	watch([paths.dev.html, paths.dev.js]).on('change', browserSync.reload);
+	watch([paths.watch.html, paths.dev.js]).on('change', browserSync.reload);
 }
 
 export default series(html, css, svg, img, parallel(browsersync, startwatch));
