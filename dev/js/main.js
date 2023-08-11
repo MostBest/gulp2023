@@ -1,29 +1,24 @@
-function getElement(name) {
+const l = (e) => console.log(e);
+
+function getDomElementByClassName(name) {
     return document.querySelector(name);
 }
 
-function changeStatus(element) {
-    let domElement = getElement(element) 
 
-    if (domElement.classList.contains('drop')) {
-        domElement.classList.remove('drop');
-        return;
-    }
-    domElement.classList.add('drop');
+function callbackAnimate(time) {
+    let elem = getDomElementByClassName('.callback');
+
+    setInterval(() => {
+        elem.classList.add('drop');
+        setTimeout(() => {
+            elem.classList.remove('drop');
+        }, 1000);
+    }, time);
 }
 
-setInterval(() => changeStatus('.callback'), 2500);
+setTimeout(() => {
+    let elem = getDomElementByClassName('.callback');
+    elem.classList.add('show');
+}, 1000);
 
-// функция получает элемнт в тело которого затем выводит текущий год
-
-class Year {
-    constructor(elem) {
-        this.elem = elem;
-    }
-
-    init() {
-        this.elem.innerHTML = new Date().getFullYear();
-    }
-}
-
-const year = new Year(document.getElementById('year'));
+callbackAnimate(15000);
