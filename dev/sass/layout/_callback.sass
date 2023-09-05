@@ -5,8 +5,10 @@
     padding: 20px
     transform: rotate(-270deg)
     transform-origin: 200% 100%
-    // border: 1px solid red
-    
+
+.callback_show
+    transform: rotate(0deg)
+
 .callback__body
     box-sizing: border-box
     border: 1px solid #ccc
@@ -18,25 +20,43 @@
     color: #fff
 
 
-.drop
+.animate-drop
     animation-name: drop
     animation-duration: .57s
     animation-timing-function: ease-out
 
-.show
+.animate-show
     animation-name: show
+    transform: rotate(-270deg)
+    animation-duration: 1.875s
+    animation-timing-function: ease-in
+
+.animate-hide
+    animation-name: hide
     transform: rotate(0deg)
-    animation-duration: 1.5s
+    animation-duration: .875s
     animation-timing-function: linear
     
+.callback__btn-close
+    position: absolute
+    top: 0
+    left: 0
 
 @keyframes show
     0%
         transform: rotate(-270deg)
-    50%
+    90%
         transform: rotate(5deg)
     100%
         transform: rotate(0deg)
+
+@keyframes hide
+    0%
+        transform: rotate(0deg)
+    10%
+        transform: rotate(5deg)
+    100%
+        transform: rotate(-270deg)
 
 @keyframes drop
     0%
