@@ -8,10 +8,17 @@ import { deleteAsync } from 'del';
 import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 const sass = gulpSass(dartSass);
+import sourceMap from 'gulp-sourcemaps';
+import changed from 'gulp-changed';
 import svgmin from 'gulp-svgmin';
 import imagemin from 'gulp-imagemin';
 import imageminJpegRecompress from 'imagemin-jpeg-recompress';
 import browserSync from 'browser-sync';
+
+
+// Сделать отдельно сборку для production
+// 1. Очистить папку assets
+// 2. Добавить gulp-group-css-media-queries - объединяет файлы по брейкпоинтам
 
 const paths = {
 	dev: {
@@ -44,19 +51,21 @@ function browsersync() {
 		browser: 'firefox'
 	})
 }
-/*
-	Нет работы с JS, возможно стоит подключить TypeScript
-*/
 
 function html() {
   return src(paths.dev.html)
+  	.pipe(changed(paths.build.html))
     .pipe(pug({ pretty: true }))
     .pipe(dest(paths.build.html))
 }
 
 function css() {
 	return src(paths.dev.css)
+		.pipe(changed(paths.build.css))
+		.pipe(sourceMap.init())
+		// .pipe(groupMedia())
 		.pipe(sass())
+		.pipe(sourceMap.write())
 		.pipe(dest(paths.build.css))
 		.pipe(browserSync.stream())
 }
@@ -68,6 +77,7 @@ function js() {
 
 function svg() {
 	return src(paths.dev.svg)
+		.pipe(changed(paths.build.svg))
 		.pipe(svgmin())
 		.pipe(dest(paths.build.svg))
 		.pipe(browserSync.stream())
@@ -75,6 +85,7 @@ function svg() {
 
 function img() {
 	return src(paths.dev.img)
+		.pipe(changed(paths.build.img))
 		.pipe(imagemin([
 			imageminJpegRecompress({
 				loops: 6,
