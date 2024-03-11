@@ -4,6 +4,11 @@ html(lang="ru")
     body
         include layout/header.pug
         .clock
+        #best-time 0
+        #counter 0
+
+        button(type="button" id="btn__stop-timer") timer
+        button(type="button" id="btn__reset-timer") reset
 
         include layout/footer.pug
 

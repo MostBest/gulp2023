@@ -15,7 +15,8 @@ import imagemin from 'gulp-imagemin';
 import imageminJpegRecompress from 'imagemin-jpeg-recompress';
 import browserSync from 'browser-sync';
 
-
+// gulp assets -> создается папка assets (production ver.). Готовый проект с жатыми стилями и скриптами.
+// gulp -> создается папка dev. Версия для разработки
 // Сделать отдельно сборку для production
 // 1. Очистить папку assets
 // 2. Добавить gulp-group-css-media-queries - объединяет файлы по брейкпоинтам
