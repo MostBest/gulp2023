@@ -1,0 +1,41 @@
+// 0-576 Extra small (xs)
+// 576-768 Small (sm)
+// 768-992 Medium (md)
+// 992-1200 Large (lg)
+// 1200-1400 Extra large (xl)
+// 1400-1920 Extra extra large (xxl)
+// >=1920 Extra extra extra large (xxxl) container width 1600 
+
+
+.container
+    width: var(--container-xs)
+    padding: var(--container-xs-padding)
+    margin: 0 auto
+
+
+// Решить вопрос с отступами, найти понравившуюся дизайн систему и на ее основе сделать
+@include sm
+    .container
+        width: var(--container-sm)
+        padding: var(--container-sm-padding)
+
+@include md
+    .container
+        width: var(--container-md)
+        padding: var(--container-md-padding)
+
+@include lg
+    .container
+        width: var(--container-lg)
+        padding: var(--container-lg-padding)
+
+@include xl
+    .container
+        width: var(--container-xl)
+        padding: var(--container-xl-padding)
+
+@include xxl
+    .container
+        width: var(--container-xxl)
+        padding: var(--container-xxl-padding)
+

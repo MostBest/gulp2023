@@ -1,0 +1,68 @@
+// Этот файл общий для всех проектов.
+// Идея. Вынести файл подобно этому в отдельную папку, 
+// что бы все проекты тянули один общий файл. А при сборке
+// build данный файл бы копировался из общей папки в директорию проекта
+
+//Twin 100
+//Extra Light 200
+//Light 300
+//Regular 400
+//Medium 500
+//Semi Bold 600
+//Bold 700
+//Extra Bold 800
+//Black 900 
+
+html
+	font-size: var(--text-size)
+	line-height: var(--text-line-height)
+
+body
+	margin: 0
+	font-family: var(--font-default)
+	font-optical-sizing: auto
+	font-weight: 400
+	font-style: normal
+	position: relative
+	color: var(--text-color)
+	box-sizing: border-box
+
+*:focus
+	outline-style: none
+	outline-width: 0px !important
+	outline-color: none !important
+
+*,
+*::before,
+*::after
+	box-sizing: inherit
+
+button
+	cursor: pointer
+	background: none
+	border-radius: var(--border-radius)
+	padding: 0
+	transition: all .3s
+
+input
+	border-radius: var(--border-radius)
+	padding: 16px 0
+	font-size: inherit
+
+a
+	text-decoration: none
+	color: inherit
+
+h1, h2, h3, h4, h5, h6
+	margin: 0
+	font-weight: 700
+	font-family: var(--h-font-family)
+	text-transform: var(--h-transform)
+
+section
+	padding: var(--section-padding)
+
+ul
+	padding: 0
+	list-style: none
+	margin: 0

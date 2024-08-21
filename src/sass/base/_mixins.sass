@@ -1,0 +1,43 @@
+// 0-576 Extra small (xs)
+// 576-768 Small (sm)
+// 768-992 Medium (md)
+// 992-1200 Large (lg)
+// 1200-1400 Extra large (xl)
+// 1400-1920 Extra extra large (xxl)
+// >=1920 Extra extra extra large (xxxl) container width 1600 
+
+
+@mixin sm
+    @media (min-width: 576px)
+        @content
+
+@mixin md
+    @media (min-width: 768px)
+        @content
+
+@mixin lg
+    @media (min-width: 992px)
+        @content
+
+@mixin xl
+    @media (min-width: 1200px)
+        @content
+
+@mixin xxl
+    @media (min-width: 1400px)
+        @content
+
+// @mixin xxxl
+//     @media (min-width: 1920px)
+//         @content
+
+
+@mixin ppl
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx)
+        @content
+
+
+// Придумать как менять font-family. Устанавливать значение по умолчанию или пользовательское
+// @mixin fonts ($font $fonts-project: false)
+//     @if $fonts-project
+//         --font-default: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Open Sans, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif

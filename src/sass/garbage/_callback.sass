@@ -1,0 +1,71 @@
+.callback
+    position: fixed
+    right: 0px
+    top: 300px
+    padding: 20px
+    transform: rotate(-270deg)
+    transform-origin: 200% 100%
+
+.callback_show
+    transform: rotate(0deg)
+
+.callback__body
+    box-sizing: border-box
+    border: 1px solid #ccc
+    border-radius: 4px
+    padding: 24px
+    max-width: 330px
+    min-width: 150px
+    background-color: #408d47
+    color: #fff
+
+
+.animate-drop
+    animation-name: drop
+    animation-duration: .57s
+    animation-timing-function: ease-out
+
+.animate-show
+    animation-name: show
+    transform: rotate(-270deg)
+    animation-duration: 1.875s
+    animation-timing-function: ease-in
+
+.animate-hide
+    animation-name: hide
+    transform: rotate(0deg)
+    animation-duration: .875s
+    animation-timing-function: linear
+    
+.callback__btn-close
+    position: absolute
+    top: 0
+    left: 0
+
+@keyframes show
+    0%
+        transform: rotate(-270deg)
+    90%
+        transform: rotate(5deg)
+    100%
+        transform: rotate(0deg)
+
+@keyframes hide
+    0%
+        transform: rotate(0deg)
+    10%
+        transform: rotate(5deg)
+    100%
+        transform: rotate(-270deg)
+
+@keyframes drop
+    0%
+        top: 310px
+    25%
+        top: 290px
+    50%
+        top: 305px
+    75%
+        top: 295px
+    100%
+        top: 300px
