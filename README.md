@@ -1,4 +1,4 @@
-# Gulp - быстрый старт
+# Gulp - быстрый старт проекта
 _Для работы потребуется установка [Node.js](https://nodejs.org/en/), [Git](https://git-scm.com/)_
 
 # Команды npm
